@@ -19,7 +19,7 @@ protected:
     }
     
     const int BEDROOM_PRICE = 50;
-    const int BATHROOM_PRICE = 100
+    const int BATHROOM_PRICE = 100;
     int bedrooms_;
     int bathrooms_;
 };
