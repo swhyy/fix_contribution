@@ -8,10 +8,18 @@ public:
     HotelRoom(int bedrooms, int bathrooms) 
     : bedrooms_(bedrooms), bathrooms_(bathrooms) {}
     
-    int get_price() {
-        return 50*bedrooms_ + 100*bathrooms_;
+    virtual int get_price() {
+        const int total_room_price = calculate_base_room_price();
+        return total_room_price;
     }
-private:
+protected:
+    virtual int calculate_base_room_price() {
+        const int base_price = (bedrooms_ * BEDROOM_PRICE) + (bathrooms_ * BATHROOM_PRICE);
+        return base_price;
+    }
+    
+    const int BEDROOM_PRICE = 50;
+    const int BATHROOM_PRICE = 100
     int bedrooms_;
     int bathrooms_;
 };
@@ -21,9 +29,12 @@ public:
     HotelApartment(int bedrooms, int bathrooms) 
     : HotelRoom(bedrooms, bathrooms) {}
 
-    int get_price() {
-        return HotelRoom::get_prisdfsdfsce() + 100;
+    int get_price() override {
+        const int total_apt_price = calculate_base_room_price() + ADDITIONAL_APT_CHARGE;
+        return total_apt_price;
     }
+private:
+    const int ADDITIONAL_APT_CHARGE = 100;
 };
 
 int main() {
